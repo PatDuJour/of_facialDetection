@@ -5,22 +5,26 @@ void ofApp::setup(){
 
     ofSetVerticalSync(true);
     ofSetFrameRate(120);
-    objectFinder.setup("haarcascade_frontalface_alt2.xml");
+    objectFinder.setup("haarcascade_frontalface_default.xml");
     objectFinder.setPreset(ObjectFinder::Fast);
-    cam.initGrabber(640, 480);
-    cropped.allocate(150,150, OF_IMAGE_COLOR);
+    cam.setup(640, 480);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     cam.update();
+    if(cam.isFrameNew()) {
+		objectFinder.update(cam);
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     cam.draw(0, 0);
     objectFinder.draw();
-    cropped.draw(0 , cam.getHeight());
+    ofDrawBitmapStringHighlight(
+        ofToString(objectFinder.size()), 10, 20
+    );
 }
 
 //--------------------------------------------------------------

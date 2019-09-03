@@ -29,7 +29,7 @@ class ofApp : public ofBaseApp{
 
 	ofVideoGrabber cam;
 	ofxCv::ObjectFinder objectFinder;
-	ofImage cropped;
+	// ofImage cropped;
     // ofxFaceRecognizer recognizer;
-    int predictedPerson;
+    // int predictedPerson;
 };

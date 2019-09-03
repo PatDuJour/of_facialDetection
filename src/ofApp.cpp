@@ -3,14 +3,12 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    // About Auto complete
-    // Curretry vscode intelisense for C++ has limitation.
-    // Try to type m.set and you will see tons of functions and variables includes "set" keyword
-    //
-    // more info here https://github.com/Microsoft/vscode-cpptools/issues/13
-    // You can use "Peek Definition" feature instead
-    // m.set
-    cam.setup(640, 480);
+    ofSetVerticalSync(true);
+    ofSetFrameRate(120);
+    objectFinder.setup("haarcascade_frontalface_alt2.xml");
+    objectFinder.setPreset(ObjectFinder::Fast);
+    cam.initGrabber(640, 480);
+    cropped.allocate(150,150, OF_IMAGE_COLOR);
 }
 
 //--------------------------------------------------------------
@@ -20,10 +18,9 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    cam.draw(0,0);
-    // ofBackground(20,200,100);
-    // ofSetColor(255);
-    // ofDrawRectangle(100,100,100,100);
+    cam.draw(0, 0);
+    objectFinder.draw();
+    cropped.draw(0 , cam.getHeight());
 }
 
 //--------------------------------------------------------------

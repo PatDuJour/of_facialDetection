@@ -1,6 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxCv.h"
+#include "ofxOpenCv.h"
+// #include "ofxFaceRecognizer.h"
+
+using namespace cv;
+using namespace ofxCv;
+
 
 class ofApp : public ofBaseApp{
 	public:
@@ -21,4 +28,8 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 	ofVideoGrabber cam;
+	ofxCv::ObjectFinder objectFinder;
+	ofImage cropped;
+    // ofxFaceRecognizer recognizer;
+    int predictedPerson;
 };
